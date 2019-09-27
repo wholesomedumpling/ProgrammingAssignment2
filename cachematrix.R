@@ -1,7 +1,7 @@
-## Put comments here that give an overall description of what your
-## functions do
+## The below code creates a function that creates the inverse for a matrix and stores it in a cache. 
+## If the same matrix is used to find the inverse of, it will call a previously stored answer
 
-## Write a short comment describing this function
+## Creates a list to obtain whether the matrix has been cached or not
 
 makeCacheMatrix <- function(x = matrix()) {
         invm <- NULL
@@ -10,13 +10,13 @@ makeCacheMatrix <- function(x = matrix()) {
                 invm <<- NULL
         }
         get <- function() x
-        setinverse <- function(inverse) invm <<- inverse
+        setinverse <- function(solve) invm <<- solve
         getinverse <- function() invm
         list(set = set, get = get, setinverse = setinverse, getinverse = getinverse)
 }
 
 
-## Write a short comment describing this function
+## Gets the cached inverse solution or solves it if not cached
 
 cacheSolve <- function(x, ...) {
         ## Return a matrix that is the inverse of 'x'
@@ -26,7 +26,7 @@ cacheSolve <- function(x, ...) {
                 return(invm)
         }
         data <- x$get()
-        inv <- solve(data,...)
+        invm <- solve(data,...)
         x$setinverse(invm)
         invm
 }
